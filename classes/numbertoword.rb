@@ -44,8 +44,9 @@ class NumberToWord
 	end
 	
 
-	def main(user_number)
 
+
+	def main(user_number)
 		# check if number is 0 otherwise convert
 		if user_number == 0
 			@word_text = "zero"
@@ -64,7 +65,7 @@ class NumberToWord
 		end
 
 		# add correct punctuation
-		#@word_text = add_punctuation(@word_text)
+		@word_text = add_punctuation(@word_text)
 		
 		puts @word_text
 	end
@@ -100,8 +101,27 @@ class NumberToWord
 
  	# Add correct punctuation between words
  	def add_punctuation (sentence)
+ 		new_sentence = ""
 
+ 		comma_words = [ "quintillion", "quadrillion", "trillion",	"billion", "million", "thousand" ]
+
+ 		# split sentence to words
+ 		words = sentence.split(" ")
+
+ 		words.each_with_index do |word, index|
+ 			next_word = words[index+1]
+ 			if comma_words.include? word
+ 				new_sentence << word + ", "
+ 			elsif word == "hundred" && word != words.last && (!comma_words.include? next_word)
+ 				new_sentence << word + " and "
+ 			else
+ 				new_sentence << word + " "
+ 			end
+ 		end
+
+ 		return new_sentence
  	end
+
 
 
  	# is first char a "-"
@@ -111,6 +131,7 @@ class NumberToWord
  			return true
  		end
  	end
+
 
 
  	# check if number has decimal point 
@@ -125,8 +146,5 @@ class NumberToWord
 			end
  		end
  	end
-
-
-
 
 end
