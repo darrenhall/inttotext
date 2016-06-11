@@ -12,7 +12,7 @@ class Input
 	def validate_user_input(user_input)
 
 		if is_numeric? user_input
-			return true
+			return { "result" => true, "user_input" => user_input }
 		else
 			print "Hey! That is not a valid number. Try again:"
 			user_input = gets.chomp

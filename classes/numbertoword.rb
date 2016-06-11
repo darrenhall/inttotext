@@ -34,8 +34,7 @@ class NumberToWord
       4 => "four",
       3 => "three",
       2 => "two",
-      1 => "one",
-      0 => "zero"
+      1 => "one"
     }
 	end
 	
@@ -44,7 +43,17 @@ class NumberToWord
 		# ensure int is a number
 		user_number = user_number.to_i
 
-		@word_text = convert_to_words(user_number)
+		# check for negative
+
+
+		# check if number is 0 otherwise convert
+		if user_number == 0
+			@word_text = "zero"
+		else
+			@word_text = convert_to_words(user_number)
+		end
+
+		# check for 
 		
 		puts @word_text
 	end
@@ -59,7 +68,6 @@ class NumberToWord
  		# go through number_words hash
  		@number_words.each do |number, word|
  			if user_number == 0
- 				tmp_string = "zero"
  			  return tmp_string
  			elsif user_number.to_s.length == 1 && user_number/number > 0
  			  return tmp_string + "#{word}"      
