@@ -10,7 +10,6 @@ class Input
 
 	# Check if user input is an integer with no decimal places
 	def validate_user_input(user_input)
-		puts "validating user input"
 
 		if is_numeric? user_input
 			return true

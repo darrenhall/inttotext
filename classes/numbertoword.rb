@@ -2,40 +2,76 @@ class NumberToWord
 
 
 	def initialize 
-
 		@word_text = ""
-		@number = ""
 
-
-		# arrays of strings
-		@one_figure = [ "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" ]
-		@two_figure = [ "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
-
-
-		@special_figures_text = [ "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" ]
-		@special_figures_int = [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
-
+		@number_words = {
+      1000000 => "million",
+      1000 => "thousand",
+      100 => "hundred",
+      90 => "ninety",
+      80 => "eighty",
+      70 => "seventy",
+      60 => "sixty",
+      50 => "fifty",
+      40 => "forty",
+      30 => "thirty",
+      20 => "twenty",
+      19 => "nineteen",
+      18 => "eighteen",
+      17 => "seventeen", 
+      16 => "sixteen",
+      15 => "fifteen",
+      14 => "fourteen",
+      13 => "thirteen",              
+      12 => "twelve",
+      11 => "eleven",
+      10 => "ten",
+      9 => "nine",
+      8 => "eight",
+      7 => "seven",
+      6 => "six",
+      5 => "five",
+      4 => "four",
+      3 => "three",
+      2 => "two",
+      1 => "one",
+      0 => "zero"
+    }
 	end
 	
 
-	def main(number)
+	def main(user_number)
+		# ensure int is a number
+		user_number = user_number.to_i
 
-		# split string to array
-		number_array = number.to_s.split("")
-
-		
-
-		# check if single digit
-		if number_array.length == 1
-			@word_text = @one_figure[number_array.first.to_i]
-		end
-
+		@word_text = convert_to_words(user_number)
 		
 		puts @word_text
-
-		# get length of number
-		# check if number is in the millions, thousands, hundreads or smaller
-		# go through each 
 	end
+
+
+
+
+	# Get the correct words for the number using the number_words hash
+ 	def convert_to_words(user_number)
+		# temp string for holding number word
+ 		tmp_string = ""
+ 		# go through number_words hash
+ 		@number_words.each do |number, word|
+ 			if user_number == 0
+ 				tmp_string = "zero"
+ 			  return tmp_string
+ 			elsif user_number.to_s.length == 1 && user_number/number > 0
+ 			  return tmp_string + "#{word}"      
+ 			elsif user_number < 100 && user_number/number > 0
+ 			  return tmp_string + "#{word}" if user_number%number == 0
+ 			  return tmp_string + "#{word} " + convert_to_words(user_number%number)
+ 			elsif user_number/number > 0
+ 			  return tmp_string + convert_to_words(user_number/number) + " #{word} " + convert_to_words(user_number%number)
+ 			end
+ 		end
+ 	end
+
+
 
 end
