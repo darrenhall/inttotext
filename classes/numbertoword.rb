@@ -3,6 +3,7 @@ class NumberToWord
 
 	def initialize 
 		@word_text = ""
+		@user_number = ""
 
 		@number_words = {
       1000000 => "million",
@@ -40,20 +41,23 @@ class NumberToWord
 	
 
 	def main(user_number)
-		# ensure int is a number
-		user_number = user_number.to_i
-
-		# check for negative
-
 
 		# check if number is 0 otherwise convert
 		if user_number == 0
 			@word_text = "zero"
 		else
-			@word_text = convert_to_words(user_number)
+			# check for negative
+			if is_negative_number?(user_number)
+				# remove -
+				user_number[0] = ""
+			end
+			
+			# convert number to words
+			@word_text << convert_to_words(user_number)
 		end
 
-		# check for 
+		# add correct punctuation
+		#@word_text = add_punctuation(@word_text)
 		
 		puts @word_text
 	end
@@ -63,9 +67,13 @@ class NumberToWord
 
 	# Get the correct words for the number using the number_words hash
  	def convert_to_words(user_number)
+ 		# ensure int is a number
+		user_number = user_number.to_i
+
 		# temp string for holding number word
  		tmp_string = ""
- 		# go through number_words hash
+
+ 		# go through number_words hash to form word string
  		@number_words.each do |number, word|
  			if user_number == 0
  			  return tmp_string
@@ -77,6 +85,23 @@ class NumberToWord
  			elsif user_number/number > 0
  			  return tmp_string + convert_to_words(user_number/number) + " #{word} " + convert_to_words(user_number%number)
  			end
+ 		end
+ 	end
+
+
+
+
+ 	# Add correct punctuation between words
+ 	def add_punctuation (sentence)
+
+ 	end
+
+
+ 	# is first char a "-"
+ 	def is_negative_number? (number)
+ 		if number.to_s.chars.first == "-"
+ 			@word_text = "negative "
+ 			return true
  		end
  	end
 
