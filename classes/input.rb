@@ -11,6 +11,10 @@ class Input
 	# Check if user input is an integer with no decimal places
 	def validate_user_input(user_input)
 
+		# remove commas
+		user_input = strip_commas(user_input)
+
+		# check if numeric
 		if is_numeric? user_input
 			return { "result" => true, "user_input" => user_input }
 		else
@@ -25,6 +29,11 @@ class Input
 	# check is variable is numeric
 	def is_numeric?(obj) 
    obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+	end
+
+	# remove any commas
+	def strip_commas(user_input)
+		return user_input.gsub(',', '')
 	end
 
 end

@@ -6,6 +6,10 @@ class NumberToWord
 		@user_number = ""
 
 		@number_words = {
+			1000000000000000000 => "quintillion",
+			1000000000000000 => "quadrillion",
+			1000000000000 => "trillion",
+			1000000000 => "billion",
       1000000 => "million",
       1000 => "thousand",
       100 => "hundred",
@@ -54,6 +58,9 @@ class NumberToWord
 			
 			# convert number to words
 			@word_text << convert_to_words(user_number)
+			
+			# check for decimals
+			#contains_decimals?(user_number)
 		end
 
 		# add correct punctuation
@@ -104,6 +111,7 @@ class NumberToWord
  			return true
  		end
  	end
+
 
 
 
