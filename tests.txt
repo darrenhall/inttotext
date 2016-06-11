@@ -1,0 +1,16 @@
+tests
+
+0
+1
+17
+23
+456
+7890
+18412
+01
+25.5
+four hundread
+sijdeof
+12!
+14 - 2  - "do I look like a calculator?"
+-12 - add minus before if first char
