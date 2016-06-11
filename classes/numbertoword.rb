@@ -60,7 +60,7 @@ class NumberToWord
 			@word_text << convert_to_words(user_number)
 			
 			# check for decimals
-			#contains_decimals?(user_number)
+			contains_decimal?(user_number)
 		end
 
 		# add correct punctuation
@@ -109,6 +109,20 @@ class NumberToWord
  		if number.to_s.chars.first == "-"
  			@word_text = "negative "
  			return true
+ 		end
+ 	end
+
+
+ 	# check if number has decimal point 
+ 	def contains_decimal?(user_number)
+ 		if user_number.include? "."
+ 			user_number_split = user_number.split(".")
+			@word_text << " point " 
+
+			# add each decimal number to the string
+			user_number_split[1].split("").each do |number|
+				@word_text << convert_to_words(number) + " "
+			end
  		end
  	end
 
