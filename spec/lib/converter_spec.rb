@@ -63,7 +63,22 @@ describe Converter do
   describe '.convert' do 
     context "given a valid number as a string" do
       it 'should return the number in word form' do
-        expect(C.convert("123")).to eql("one hundred and twenty three ")
+        expect(C.convert("0")).to eql("zero")
+      end
+      it 'should return the number in word form' do
+        expect(C.convert("-123")).to eql("negative one hundred and twenty three ")
+      end
+      it 'should return the number in word form' do
+        expect(C.convert("4572837.667")).to eql("four million, five hundred and seventy two thousand, eight hundred and thirty seven point six six seven ")
+      end
+      it 'should return the number in word form' do
+        expect(C.convert("01")).to eql("one ")
+      end
+      it 'should return the number in word form' do
+        expect(C.convert("7263927364.44")).to eql("seven billion, two hundred and sixty three million, nine hundred and twenty seven thousand, three hundred and sixty four point four four ")
+      end
+      it 'should return the number in word form' do
+        expect(C.convert("3400103")).to eql("three million, four hundred thousand, one hundred and three ")
       end
     end
     context "given a valid number as an integer" do
