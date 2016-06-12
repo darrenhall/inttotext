@@ -12,4 +12,4 @@ output: one hundred and eighty
 
 ==== Tests / Specifications ====
 
-bundle install rspec
+bundle exec rspec

@@ -8,17 +8,8 @@ class Input
 	end
 
 
-	# print error message and get another number from user
-	def print_error_and_get_new_input_from_user
-		print "Hey! That is not a valid number. Try again:"
-		user_input = gets.chomp
-		validate_user_input( user_input )
-	end
-
-
 	# Check if user input is an integer with no decimal places
 	def validate_user_input(user_input)
-
 		# remove commas
 		user_input = strip_commas(user_input)
 
@@ -31,7 +22,6 @@ class Input
 		else
 			print_error_and_get_new_input_from_user
 		end
-
 	end
 
 
@@ -49,5 +39,15 @@ class Input
 	def strip_spaces(user_input)
 		return user_input.to_s.gsub(' ', '')
 	end
+
+
+	# print error message and get another number from user
+	private
+	def print_error_and_get_new_input_from_user
+		print "Hey! That is not a valid number. Try again:"
+		user_input = gets.chomp
+		validate_user_input( user_input )
+	end
+
 
 end

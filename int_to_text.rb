@@ -1,6 +1,6 @@
 # import required classes
-require './classes/input.rb'
-require './classes/converter.rb'
+require './lib/input.rb'
+require './lib/converter.rb'
 
 I = Input.new
 C = Converter.new

@@ -1,5 +1,7 @@
 class Converter
 
+	attr_accessor :word_text, :number_words_hash
+
 
 	def initialize 
 		@word_text = ""
