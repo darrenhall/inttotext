@@ -48,6 +48,7 @@ class Converter
 
 
 	def convert(user_number)
+		@word_text = ""
 
 		# check for negative
 		if is_negative_number?(user_number)
@@ -69,7 +70,7 @@ class Converter
 		
 		# check for decimal point
 		if contains_decimal?(user_number)
-			update_word_text_with_decimal_point(user_number)
+			@word_text = update_word_text_with_decimal_point(user_number)
 		end
 
 		return remove_double_spacing(@word_text)
@@ -143,11 +144,18 @@ class Converter
 
  	# check if number has decimal point 
  	def contains_decimal?(user_number)
- 		if user_number.include? "."
+ 		if user_number.to_s.include? "."
  			return true
  		else
  			return false
  		end
+ 	end
+
+
+
+ 	# remove any double spacing
+ 	def remove_double_spacing(sentence)
+ 		return sentence.gsub(/  /, ' ')
  	end
 
 
@@ -161,14 +169,10 @@ class Converter
 		user_number_split[1].split("").each do |number|
 			@word_text << convert_number_to_words(number) + " "
 		end
+
+		return @word_text
  	end
 
-
-
- 	# remove any double spacing
- 	def remove_double_spacing(sentence)
- 		return sentence.gsub(/  /, ' ')
- 	end
 
 
 
