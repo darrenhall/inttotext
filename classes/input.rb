@@ -14,6 +14,9 @@ class Input
 		# remove commas
 		user_input = strip_commas(user_input)
 
+		# remove spaces
+		user_input = strip_spaces(user_input)
+
 		# check if numeric
 		if is_numeric? user_input
 			return { "result" => true, "user_input" => user_input }
@@ -31,9 +34,14 @@ class Input
    obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
 	end
 
-	# remove any commas
+	# remove any commas in the string
 	def strip_commas(user_input)
-		return user_input.gsub(',', '')
+		return user_input.to_s.gsub(',', '')
+	end
+
+	# remove any spaces in the string
+	def strip_spaces(user_input)
+		return user_input.to_s.gsub(' ', '')
 	end
 
 end
